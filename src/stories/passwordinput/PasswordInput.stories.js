@@ -12,8 +12,7 @@ export default {
 
 export const Main = () => (
   <>
-  <div className='password-container enabled'>
-    <label className='password-label'>Password</label>
+  <div >
     <PasswordInput  label="Password"  onChange={action('onChange')} value="" />
     </div>
   </>

@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import { outlinedInputClasses } from "@mui/material/OutlinedInput";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import { styled } from "@mui/material/styles";
-import zIndex from '@mui/material/styles/zIndex';
 
 const PasswordInput = ({ label, onChange, value }) => {
   const StyledTextField = styled(TextField)({
@@ -30,23 +29,40 @@ const PasswordInput = ({ label, onChange, value }) => {
     [`& .${inputLabelClasses.outlined}`]: {
       color: "rgb(155, 152, 152)"
     },
-    // [`&:hover .${inputLabelClasses.outlined}`]: {
-    //   color: "rgb(155, 152, 152)"
-    // },
     [`& .${inputLabelClasses.outlined}.${inputLabelClasses.focused}`]: {
-      color: "rgb(155, 152, 152)"
+      color: "white"
     }
   });
-  // const [isHovered, setIsHovered] = useState(false);
-  // const [isActive, setIsActive] = useState(false);
+  const pattern = /^.*(?=.{8,16})(?=.*\d)(?=.*[A-Z]{1,})(?=.*[a-z]{1,})(?=.*[!@#$%^&*?\(\)]).*$/;
+
+  const [password, setPassword] = useState('');
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value
+  }
 
   return (
-    <StyledTextField
-      defaultValue="Password"
-      variant="outlined"
-      label="Password"
-      className='password'
-    />
+   
+      <div className='password-container enabled'>
+        <label className='password-label'>Password</label>
+        <div>
+        <StyledTextField
+          // defaultValue="Password"
+          variant="outlined"
+          label="Password"
+          type='password'
+          className='password'
+        />
+        <ul className='pattern-rules'>
+        <li className='pattern-rule'>Have at least one uppercase letter</li>
+        <li className='pattern-rule'>Have at least one lowercase letter</li>
+        <li className='pattern-rule'>Have at least one number</li>
+        <li className='pattern-rule'>Have at least one special character</li>
+        <li className='pattern-rule'>Longer than 8 characters</li>
+      </ul>
+      </div>
+      </div>
+      
+    
   );
 };
 
